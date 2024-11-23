@@ -2,7 +2,7 @@ let array = undefined;
 let list = [0,0,0,0];
 
 const calculateSp = (id) => {
- //write your code here
+
  var qty = document.getElementById(id).value ;
  console.log(qty);
  var subtotal;
@@ -74,12 +74,12 @@ document.getElementById("myBtn").disabled = true;
 }
 
 const Total = () => {
-  //write your code here
+ 
   document.getElementById("ttl").innerHTML = array;
 }
 
 const Cancel = () => {
- //write your code here
+
  document.getElementById("americano").checked = false;
  document.getElementById("capuccino").checked = false;
  document.getElementById("mocha").checked = false;
