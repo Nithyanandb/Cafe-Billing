@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Trigger deployment only on pushes to the main branch
+      - main  # Trigger deployment on the main branch
 
 jobs:
   deploy:
@@ -13,22 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2  # Checkout the repository code
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'  # Set up Node.js environment (optional)
-
-      - name: Build the website (if needed)
-        run: |
-          npm install
-          npm run build  # Optional, for React or other JS projects that require a build step
-
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4  # Action to deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4  # Deploy to GitHub Pages
         with:
-          branch: gh-pages  # Deploy to gh-pages branch
-          folder: .  # Path to your project directory (the root directory here)
-          clean: true  # Clean the previous deployment before pushing the new one
-
-      - name: Invalidate GitHub Pages cache
-        run: echo "Cache invalidated successfully"
+          branch: gh-pages  # Target branch for deployment
+          folder: .  # Root folder containing your static website
