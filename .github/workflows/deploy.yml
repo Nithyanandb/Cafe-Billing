@@ -13,8 +13,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Install dependencies
+      run: npm install
+      working-directory: ./Cafe-Billing # Specify the subdirectory where package.json is located
+
+    - name: Build project
+      run: npm run build
+      working-directory: ./Cafe-Billing # Specify the subdirectory where your build command works
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./ # Ensure this points to the folder with your static files
+        publish_dir: ./Cafe-Billing/public # Replace this with the output directory
