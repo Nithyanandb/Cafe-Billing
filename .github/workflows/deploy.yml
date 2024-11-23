@@ -3,20 +3,28 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Deploy when changes are pushed to the main branch
+      - main # Adjust if your main branch has a different name
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3  # Update to version 3 for compatibility
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages  # Deploy to the GitHub Pages branch
-          folder: .  # Root folder to deploy
-          clean: true  # Clean previous deployment artifacts
-          token: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub's provided token for authentication
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16' # Use a specific Node.js version if needed
+
+    - name: Build project
+      run: |
+        npm install       # Use this if you have a package.json (optional)
+        npm run build     # If your project needs a build step (optional)
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public # Replace with your output directory
