@@ -63,7 +63,7 @@ td {
 
 }
 #cancel{
-    position: static;
+    position: relative;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: white;
     padding: 20px 40px;
