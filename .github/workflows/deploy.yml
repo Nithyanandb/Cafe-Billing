@@ -3,18 +3,20 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Trigger deployment on the main branch
+      - main  # Deploy when changes are pushed to the main branch
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2  # Checkout the repository code
+        uses: actions/checkout@v3  # Update to version 3 for compatibility
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4  # Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # Target branch for deployment
-          folder: .  # Root folder containing your static website
+          branch: gh-pages  # Deploy to the GitHub Pages branch
+          folder: .  # Root folder to deploy
+          clean: true  # Clean previous deployment artifacts
+          token: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub's provided token for authentication
